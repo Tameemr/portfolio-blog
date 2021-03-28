@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+</head>
+<body>
+  
+  <header style="background-color: #292929;"> 
+    <div class="container">
+        <div class="logo_name">
+            <a href="/"><span>T</span>ameem Blog<span> - DASHBOARD</span></a>
+        </div> 
+        <p class="lead mb-1" style="color: white; padding-top: 17px; text-align: right;">Welcome <%= user.name %></p>  
+        <a href="/users/logout" class="btn btn-secondary" style="float: right;">Logout</a>  
+    </div>
+  </header>
+
+  <div class="container" style="padding-top: 130px; color: white;">   <!-- Bootstrap class style for having a little padding around everything in our app  --> 
+    <h1 class="mb-4">Blog Articles</h1>   <!-- this class will give a little space on the bottom under the heading  -->
+    <a href="/articles/new" class="btn btn-success">New Article</a>   <!-- new article button and lin it to the route   /articles/new  -->
+    <!-- forEach loop function returns an article with applying html codes with its bootstrap classes (it is looping all over the article, for each loop with the card bootstrap styles will be applied on each article in the articles list [array]).  -->
+    <% articles.forEach(article => { %>
+      <div class="card mt-4">      <!-- class for the whole card body - outside  -->
+        <div class="card-body">     <!-- class for the card body - inside  -->
+          <h4 class="card-title" style="color: black;"><%= article.title %></h4>      <!-- class for the article title  -->
+          <div class="card-subtitle text-muted mb-2">           <!-- class for the article date  -->
+            <%= article.createdAt.toLocaleDateString() %>   <!-- this function toLocaleDateString() will return the date details according to local time viewing style dd.mm.yyyy -->
+          </div>
+          <div class="card-text mb-2" style="color: black; padding-bottom: 20px;"><%= article.description %></div>        <!-- class for the article description  -->
+          <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a>      <!-- Read more btn  -->
+          <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>         <!-- Edit btn  -->
+          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">       <!-- Delete btn  -->
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

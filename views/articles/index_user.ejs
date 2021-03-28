@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+</head>
+<body>
+  <div class="container" style="background-color: #292929; padding-top: 130px; color: white;">   <!-- Bootstrap class style for having a little padding around everything in our app  --> 
+    <h1 class="mb-4">Blog Articles</h1>   <!-- this class will give a little space on the bottom under the heading  -->
+          <!-- forEach loop function returns an article with applying html codes with its bootstrap classes (it is looping all over the article, for each loop with the card bootstrap styles will be applied on each article in the articles list [array]).  -->
+    <% articles.forEach(article => { %>
+      <div class="card mt-4" style="border-style: solid; border-color: #353535; border-width: 5px;">      <!-- class for the whole card body - outside  -->
+        <div class="card-body" style="background-color: #353535; ">     <!-- class for the card body - inside  -->
+          <h4 class="card-title" style="font-size: 30px; font-weight: 600; letter-spacing: .5px; color: #f3971b; margin: 0; padding-bottom: 10px; text-align: cnter;
+          text-transform: uppercase; position: relative;"><%= article.title %></h4>      <!-- class for the article title  -->
+          <div class="card-subtitle text-muted mb-1" style="color: #ffffff;";>           <!-- class for the article date  -->
+            <%= article.createdAt.toLocaleDateString() %>   <!-- this function toLocaleDateString() will return the date details according to local time viewing style dd.mm.yyyy -->
+          </div>
+          <div class="card-text mb-2" style="color: #ffffff; padding-bottom: 20px;" ><%= article.description %></div>        <!-- class for the article description  -->
+          <a href="/articles/1/<%= article.slug %>" class="btn btn-outline-warning">Read More</a>      <!-- Read more btn  -->
+                   </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
